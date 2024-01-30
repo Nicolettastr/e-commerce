@@ -41,7 +41,9 @@ const StoreModal = () => {
       setLoading(true);
 
       const response = await axios.post("/api/stores", values);
-      toast.success("Store Created!");
+
+      // This does a refresh, meaning that the response is going to be loaded in the database, we use this because with router in some cases the db wasnt adding all data
+      window.location.assign(`/${response.data.id}`);
     } catch (error) {
       toast.error("Something went wrong.");
     } finally {
